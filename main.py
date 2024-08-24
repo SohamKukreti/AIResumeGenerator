@@ -60,130 +60,131 @@ def generate_resume():
         cert_link = certificate.get('link')
         certificate_details += f"\n- **{cert_title}**: {cert_link}\n"
 
-    latex_template = (
-    "\\documentclass[letterpaper,11pt]{article}\n"
-    "\\usepackage{latexsym}\n"
-    "\\usepackage[empty]{fullpage}\n"
-    "\\usepackage{titlesec}\n"
-    "\\usepackage{marvosym}\n"
-    "\\usepackage[usenames,dvipsnames]{color}\n"
-    "\\usepackage{verbatim}\n"
-    "\\usepackage{enumitem}\n"
-    "\\usepackage[hidelinks]{hyperref}\n"
-    "\\usepackage{fancyhdr}\n"
-    "\\usepackage[english]{babel}\n"
-    "\\usepackage{tabularx}\n"
-    "\\input{glyphtounicode}\n"
-    "\\pagestyle{fancy}\n"
-    "\\fancyhf{}\n"
-    "\\fancyfoot{}\n"
-    "\\renewcommand{\\headrulewidth}{0pt}\n"
-    "\\renewcommand{\\footrulewidth}{0pt}\n"
-    "\\addtolength{\\oddsidemargin}{-0.5in}\n"
-    "\\addtolength{\\evensidemargin}{-0.5in}\n"
-    "\\addtolength{\\textwidth}{1in}\n"
-    "\\addtolength{\\topmargin}{-.5in}\n"
-    "\\addtolength{\\textheight}{1.0in}\n"
-    "\\urlstyle{same}\n"
-    "\\raggedbottom\n"
-    "\\raggedright\n"
-    "\\setlength{\\tabcolsep}{0in}\n"
-    "\\titleformat{\\section}{\n"
-    "  \\vspace{-4pt}\\scshape\\raggedright\\large\n"
-    "}{}{0em}{}[\\color{black}\\titlerule \\vspace{-5pt}]\n"
-    "\\pdfgentounicode=1\n"
-    "\\newcommand{\\resumeItem}[1]{\n"
-    "  \\item\\small{\n"
-    "    {#1 \\vspace{-2pt}}\n"
-    "  }\n"
-    "}\n"
-    "\\newcommand{\\resumeSubheading}[4]{\n"
-    "  \\vspace{-2pt}\\item\n"
-    "    \\begin{tabular*}{0.97\\textwidth}[t]{l@{\\extracolsep{\\fill}}r}\n"
-    "      \\textbf{#1} & #2 \\\\\n"
-    "      \\textit{\\small#3} & \\textit{\\small #4} \\\\\n"
-    "    \\end{tabular*}\\vspace{-7pt}\n"
-    "}\n"
-    "\\newcommand{\\resumeSubSubheading}[2]{\n"
-    "    \\item\n"
-    "    \\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}\n"
-    "      \\textit{\\small#1} & \\textit{\\small #2} \\\\\n"
-    "    \\end{tabular*}\\vspace{-7pt}\n"
-    "}\n"
-    "\\newcommand{\\resumeProjectHeading}[2]{\n"
-    "    \\item\n"
-    "    \\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}\n"
-    "      \\small#1 & #2 \\\\\n"
-    "    \\end{tabular*}\\vspace{-7pt}\n"
-    "}\n"
-    "\\newcommand{\\resumeSubItem}[1]{\\resumeItem{#1}\\vspace{-4pt}}\n"
-    "\\renewcommand\\labelitemii{\\$\\vcenter{\\hbox{\\tiny$\\bullet$}}\\$}\n"
-    "\\newcommand{\\resumeSubHeadingListStart}{\\begin{itemize}[leftmargin=0.15in, label={}]}\n"
-    "\\newcommand{\\resumeSubHeadingListEnd}{\\end{itemize}}\n"
-    "\\newcommand{\\resumeItemListStart}{\\begin{itemize}}\n"
-    "\\newcommand{\\resumeItemListEnd}{\\end{itemize}\\vspace{-5pt}}\n"
-    "\\begin{document}\n"
-    "\\begin{center}\n"
-    "    \\textbf{\\Huge \\scshape Your Name} \\\\ \\vspace{1pt}\n"
-    "    \\small 0000000000 $|$ \\href{mailto:emailaddress}{\\underline{youremail}} $|$ \n"
-    "    \\href{https://linkedin.com/in/linkedin}{\\underline{linkedin.com/in/linkedin}} $|$\n"
-    "    \\href{https://github.com/github}{\\underline{github.com/github}}\n"
-    "\\end{center}\n"
-    "\\section{Education}\n"
-    "  \\resumeSubHeadingListStart\n"
-    "    \\resumeSubheading\n"
-    "      {College}{City, Country}\n"
-    "      {Course}{Expected Graduation:}\n"
-    "  \\resumeSubHeadingListEnd\n"
-    "\\section{Experience}\n"
-    "  \\resumeSubHeadingListStart\n"
-    "    \\resumeSubheading\n"
-    "      {Experience 1} {Start and End date}\n"
-    "      {Summary}{}\n"
-    "      \\resumeItemListStart\n"
-    "        \\resumeItem{Details about Experience}\n"
-    "     \\resumeItemListEnd\n"
-    "    \\resumeSubheading\n"
-    "      {Experience 2}{Start and End date}\n"
-    "      {Summary}{}\n"
-    "      \\resumeItemListStart\n"
-    "        \\resumeItem{Details about experience}\n"
-    "    \\resumeItemListEnd\n"
-    "  \\resumeSubHeadingListEnd\n"
-    " \\section{Achievements}\n"
-    " \\begin{itemize}[leftmargin=0.15in, label={}]\n"
-    "    \\small{\\item{\n"
-    "     \\textbf{Achievement 1}{: Details about achievement } \\\\\n"
-    "     \\textbf{Achievement 2}{: Details about achievement} \\\\\n"
-    "    }}\n"
-    " \\end{itemize}\n"
-    "\\section{Projects}\n"
-    "    \\resumeSubHeadingListStart\n"
-    "      \\resumeProjectHeading\n"
-    "          {\\textbf{Project 1} $|$ \\emph{Languages and technologies}}{Date built}\n"
-    "          \\resumeItemListStart\n"
-    "            \\resumeItem{Details about project}\n"
-    "          \\resumeItemListEnd\n"
-    "    \\resumeSubHeadingListEnd\n"
-    "\\section{Technical Skills}\n"
-    " \\begin{itemize}[leftmargin=0.15in, label={}]\n"
-    "    \\small{\\item{\n"
-    "     \\textbf{Languages}{: languages here } \\\\\n"
-    "     \\textbf{Frameworks}{: Frameworks here if there} \\\\\n"
-    "     \\textbf{Developer Tools}{: } \\\\\n"
-    "     \\textbf{Libraries}{: Libraries here if there} \\\\\n"
-    "     \\textbf{Other Skills}{: Other skills}\n"
-    "    }}\n"
-    " \\end{itemize}\n"
-    "\\section{Certificates}\n"
-    " \\begin{itemize}[leftmargin=0.15in, label={}]\n"
-    "    \\small{\\item{\n"
-    "     \\textbf{Certificate 1}{: Details about Certificate } \\\\\n"
-    "     \\textbf{Certificate 2}{: Details about Certificate} \\\\\n"
-    "    }}\n"
-    " \\end{itemize}\n"
-    "\\end{document}\n"
-    )
+    latex_template = """
+    \\documentclass[letterpaper,11pt]{article}
+    \\usepackage{latexsym}
+    \\usepackage[empty]{fullpage}
+    \\usepackage{titlesec}
+    \\usepackage{marvosym}
+    \\usepackage[usenames,dvipsnames]{color}
+    \\usepackage{verbatim}
+    \\usepackage{enumitem}
+    \\usepackage[hidelinks]{hyperref}
+    \\usepackage{fancyhdr}
+    \\usepackage[english]{babel}
+    \\usepackage{tabularx}
+    \\input{glyphtounicode}
+    \\pagestyle{fancy}
+    \\fancyhf{}
+    \\fancyfoot{}
+    \\renewcommand{\\headrulewidth}{0pt}
+    \\renewcommand{\\footrulewidth}{0pt}
+    \\addtolength{\\oddsidemargin}{-0.5in}
+    \\addtolength{\\evensidemargin}{-0.5in}
+    \\addtolength{\\textwidth}{1in}
+    \\addtolength{\\topmargin}{-.5in}
+    \\addtolength{\\textheight}{1.0in}
+    \\urlstyle{same}
+    \\raggedbottom
+    \\raggedright
+    \\setlength{\\tabcolsep}{0in}
+    \\titleformat{\\section}{
+    \\vspace{-4pt}\\scshape\\raggedright\\large
+    }{}{0em}{}[\\color{black}\\titlerule \\vspace{-5pt}]
+    \\pdfgentounicode=1
+    \\newcommand{\\resumeItem}[1]{
+    \\item\\small{
+        {#1 \\vspace{-2pt}}
+    }
+    }
+    \\newcommand{\\resumeSubheading}[4]{
+    \\vspace{-2pt}\\item
+        \\begin{tabular*}{0.97\\textwidth}[t]{l@{\\extracolsep{\\fill}}r}
+        \\textbf{#1} & #2 \\\\
+        \\textit{\\small#3} & \\textit{\\small #4} \\\\
+        \\end{tabular*}\\vspace{-7pt}
+    }
+    \\newcommand{\\resumeSubSubheading}[2]{
+        \\item
+        \\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}
+        \\textit{\\small#1} & \\textit{\\small #2} \\\\
+        \\end{tabular*}\\vspace{-7pt}
+    }
+    \\newcommand{\\resumeProjectHeading}[2]{
+        \\item
+        \\begin{tabular*}{0.97\\textwidth}{l@{\\extracolsep{\\fill}}r}
+        \\small#1 & #2 \\\\
+        \\end{tabular*}\\vspace{-7pt}
+    }
+    \\newcommand{\\resumeSubItem}[1]{\\resumeItem{#1}\\vspace{-4pt}}
+    \\renewcommand\\labelitemii{\\$\\vcenter{\\hbox{\\tiny$\\bullet$}}\\$}
+    \\newcommand{\\resumeSubHeadingListStart}{\\begin{itemize}[leftmargin=0.15in, label={}]}
+    \\newcommand{\\resumeSubHeadingListEnd}{\\end{itemize}}
+    \\newcommand{\\resumeItemListStart}{\\begin{itemize}}
+    \\newcommand{\\resumeItemListEnd}{\\end{itemize}\\vspace{-5pt}}
+    \\begin{document}
+    \\begin{center}
+        \\textbf{\\Huge \\scshape Your Name} \\\\ \\vspace{1pt}
+        \\small 0000000000 $|$ \\href{mailto:emailaddress}{\\underline{youremail}} $|$ 
+        \\href{https://linkedin.com/in/linkedin}{\\underline{linkedin.com/in/linkedin}} $|$
+        \\href{https://github.com/github}{\\underline{github.com/github}}
+    \\end{center}
+    \\section{Education}
+    \\resumeSubHeadingListStart
+        \\resumeSubheading
+        {College}{City, Country}
+        {Course}{Expected Graduation:}
+    \\resumeSubHeadingListEnd
+    \\section{Experience}
+    \\resumeSubHeadingListStart
+        \\resumeSubheading
+        {Experience 1} {Start and End date}
+        {Summary}{}
+        \\resumeItemListStart
+            \\resumeItem{Details about Experience}
+        \\resumeItemListEnd
+        \\resumeSubheading
+        {Experience 2}{Start and End date}
+        {Summary}{}
+        \\resumeItemListStart
+            \\resumeItem{Details about experience}
+        \\resumeItemListEnd
+    \\resumeSubHeadingListEnd
+    \\section{Achievements}
+    \\begin{itemize}[leftmargin=0.15in, label={}]
+        \\small{\\item{
+        \\textbf{Achievement 1}{: Details about achievement } \\\\
+        \\textbf{Achievement 2}{: Details about achievement} \\\\
+        }}
+    \\end{itemize}
+    \\section{Projects}
+        \\resumeSubHeadingListStart
+        \\resumeProjectHeading
+            {\\textbf{Project 1} $|$ \\emph{Languages and technologies}}{Date built}
+            \\resumeItemListStart
+                \\resumeItem{Details about project}
+            \\resumeItemListEnd
+        \\resumeSubHeadingListEnd
+    \\section{Technical Skills}
+    \\begin{itemize}[leftmargin=0.15in, label={}]
+        \\small{\\item{
+        \\textbf{Languages}{: languages here } \\\\
+        \\textbf{Frameworks}{: Frameworks here if there} \\\\
+        \\textbf{Developer Tools}{: } \\\\
+        \\textbf{Libraries}{: Libraries here if there} \\\\
+        \\textbf{Other Skills}{: Other skills}
+        }}
+    \\end{itemize}
+    \\section{Certificates}
+    \\begin{itemize}[leftmargin=0.15in, label={}]
+        \\small{\\item{
+        \\textbf{Certificate 1}{: Details about Certificate } \\\\
+        \\textbf{Certificate 2}{: Details about Certificate} \\\\
+        }}
+    \\end{itemize}
+    \\end{document}
+    """
+
 
     message_content = (
         f"Use the following LaTeX template to create a professional, ATS-friendly resume with the given information. "
@@ -207,10 +208,11 @@ def generate_resume():
         f"**Certificates**: List any certifications or courses completed that are relevant to the job role. Include the issuing organization and completion date: {certificate_details}\n"
         )
 
+    system_prompt = "Your task is to generate a professional resume using only the provided information. Format the resume strictly according to the sections mentioned and avoid adding any extra text, commentary, or conversation outside of the resume structure. The output should be a well-structured resume, directly ready for use, without any prefatory or explanatory comments."
 
     response = client.chat.completions.create(
         model="gpt-4o",
-        messages=[{"role": "user", "content": message_content}],
+        messages=[{"role": "user", "content": message_content}, {"role": "system", "content": system_prompt}],
     )
 
     resume_content = response.choices[0].message.content
