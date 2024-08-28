@@ -21,6 +21,8 @@ def generate_resume():
     address = data.get('address')
     skills = data.get('skills')
     
+    job_role = data.get('role')
+
     education = data.get('Education', [])
     education_details = ""
     for edu in education:
@@ -60,33 +62,32 @@ def generate_resume():
         cert_link = certificate.get('link')
         certificate_details += f"\n- **{cert_title}**: {cert_link}\n"
 
-    with open('latex_template_2.txt', 'r') as f:
+    with open('templates/latex_template_2.txt', 'r') as f:
         latex_template = f.read()
         
 
    
 
-    message_content = (
-        f"Use the following LaTeX template to create a professional, ATS-friendly resume with the given information. "
-        f"Ensure the resume has a high chance of getting selected by recruiters by using industry-relevant keywords and quantifiable metrics where applicable. "
-        f"Do not invent any details not provided in this prompt. Structure the resume with the following sections: Contact Information, Professional Summary, Skills, Education, Experience, Projects, Achievements, and Certificates.\n\n"
+    message_content =  f"""Use the following LaTeX template to create a professional, ATS-friendly resume with the given information. 
+        Ensure the resume has a high chance of getting selected by recruiters by using industry-relevant keywords and quantifiable metrics where applicable. 
+        Do not invent any details not provided in this prompt. Structure the resume with the following sections: Contact Information, Professional Summary, Skills, Education, Experience, Projects, Achievements, and Certificates.\n\n
+        The resume should be created to get the role of a {job_role}\n
+        {latex_template}\n\n
         
-        f"{latex_template}\n\n"
+        **Contact Information**:\n
+        - Name: {name}\n
+        - Email: {email}\n
+        - Phone: {phone}\n
+        - Address: {address}\n
         
-        f"**Contact Information**:\n"
-        f"- Name: {name}\n"
-        f"- Email: {email}\n"
-        f"- Phone: {phone}\n"
-        f"- Address: {address}\n\n"
-        
-        f"**Professional Summary**: Write a concise summary highlighting key strengths, expertise, and career goals relevant to the job role.\n\n"
-        f"**Skills**: List key skills (both technical and soft skills) relevant to the job role. Use bullet points and include proficiency levels or years of experience where possible: {skills}\n\n"
-        f"**Education**: Provide details on the educational background, including degrees, institutions, graduation dates, and any honors or relevant coursework: {education_details}\n\n"
-        f"**Experience**: Describe past work experience, including job titles, company names, locations, dates of employment, and bullet points detailing responsibilities and achievements. Focus on using action verbs and quantifiable results to showcase impact: {experience_details}\n\n"
-        f"**Projects**: Detail key projects with their objectives, your role, technologies used, and the outcomes or impact. Use quantifiable metrics to demonstrate success: {project_details}\n\n"
-        f"**Achievements**: Highlight significant professional achievements or recognitions. Include details such as awards, recognitions, publications, or contributions that set you apart: {achievement_details}\n\n"
-        f"**Certificates**: List any certifications or courses completed that are relevant to the job role. Include the issuing organization and completion date: {certificate_details}\n"
-        )
+        **Professional Summary**: Write a concise summary highlighting key strengths, expertise, and career goals relevant to the job role.\n\n"
+        **Skills**: List key skills (both technical and soft skills) relevant to the job role. Use bullet points and include proficiency levels or years of experience where possible: {skills}\n\n
+        **Education**: Provide details on the educational background, including degrees, institutions, graduation dates, and any honors or relevant coursework: {education_details}\n\n
+        **Experience**: Describe past work experience, including job titles, company names, locations, dates of employment, and bullet points detailing responsibilities and achievements. Focus on using action verbs and quantifiable results to showcase impact: {experience_details}\n\n
+        **Projects**: Detail key projects with their objectives, your role, technologies used, and the outcomes or impact. Use quantifiable metrics to demonstrate success: {project_details}\n\n
+        **Achievements**: Highlight significant professional achievements or recognitions. Include details such as awards, recognitions, publications, or contributions that set you apart: {achievement_details}\n\n
+        **Certificates**: List any certifications or courses completed that are relevant to the job role. Include the issuing organization and completion date: {certificate_details}\n
+    """
 
     system_prompt = "Your task is to generate a professional resume using only the provided information. Format the resume strictly according to the sections mentioned and avoid adding any extra text, commentary, or conversation outside of the resume structure. The output should be a well-structured resume, directly ready for use, without any prefatory or explanatory comments."
 
