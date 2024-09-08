@@ -62,7 +62,7 @@ def generate_resume():
         cert_link = certificate.get('link')
         certificate_details += f"\n- **{cert_title}**: {cert_link}\n"
 
-    with open('templates/latex_template_2.txt', 'r') as f:
+    with open('templates/latex_template_3.txt', 'r') as f:
         latex_template = f.read()
         
 
