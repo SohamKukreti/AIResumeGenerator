@@ -1,0 +1,61 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[left=0.75in, right=0.75in, top=0.75in, bottom=0.75in]{geometry}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Ananya Verma} \\ \vspace{1pt}
+    \small +91 123456789 $|$ email@gmail.com \\
+    Address
+\end{center}
+
+%----Professional Summary--------
+\section*{Professional Summary}
+Write professional summary here
+
+%-----------EDUCATION-----------
+\section*{Education}
+\begin{itemize}
+    \item \textbf{University Name} \\
+          \textit{Course Name} \\
+          Graduation Year: year \\
+          GPA: x
+    \item \textbf{School name} \\
+          \textit{course name} \\
+          Graduation Year: year \\
+          GPA: x
+\end{itemize}
+
+%-----------SKILLS-----------
+\section*{Skills}
+\begin{itemize}
+    \item \textbf{Technical skills}: mention technical skills
+    \item \textbf{Other Skills}: mention other skills
+\end{itemize}
+
+%-----------EXPERIENCE-----------
+\section*{Experience}
+\begin{itemize}
+    \item \textbf{Experience 1} \\
+          \textit{Start - End date} \\
+            Write description here
+    \item \textbf{Experience 2} \\
+          \textit{Start - End date} \\
+          Write description here
+\end{itemize}
+
+%-----------ACHIEVEMENTS-----------
+\section*{Certificates and Achievements}
+\begin{itemize}
+    \item \textbf{Award 1}: Description
+    \item \textbf{Award 2}: Description
+    \item \textbf{Certificate 1}: Description
+    \item \textbf{Certificate 2}: Description
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,91 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[left=0.75in, right=0.75in, top=0.75in, bottom=0.75in]{geometry}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Your Name} \\ \vspace{1pt}
+    \small +91 123456789 $|$ \href{mailto:mail@gmail.com}{\underline{mail@gmail.com}}  
+\end{center}
+
+%----Professional Summary--------
+\section{Professional Summary}
+Write professional summary here
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University Name}{}
+      {Course name}{start date - end date}
+    
+  \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Technical skills}{: mention technical skills} \\
+     \textbf{Other Skills}{: mention other skills} \\
+    }}
+ \end{itemize}
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Experience 1}{Date}
+      {1 liner about experience}{}
+      \resumeItemListStart
+        \resumeItem{Point 1.}
+        \resumeItem{Point 2.}
+      \resumeItemListEnd
+
+
+    \resumeSubheading
+      {Experience 2}{Date}
+      {1 liner about experience}{}
+      \resumeItemListStart
+        \resumeItem{Point 1.}
+        \resumeItem{Point 2.}
+    \resumeItemListEnd
+
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+    
+      \resumeProjectHeading
+          {\textbf{Project title 1} $|$ \emph{Technologies/skills used}}{Date}
+          \resumeItemListStart
+            \resumeItem{Point 1}
+            \resumeItem{Point 2}
+          \resumeItemListEnd
+          
+      \resumeProjectHeading
+           {\textbf{Project title 2} $|$ \emph{Technologies/skills used}}{Date}
+          \resumeItemListStart
+            \resumeItem{Point 1}
+            \resumeItem{Point 2}
+          \resumeItemListEnd
+          
+    \resumeSubHeadingListEnd
+
+%------ACHIEVEMENTS---------
+\section{Certificates and Achievements}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Certificate/Achievement 1}{: 1 line description} \\
+     \textbf{Certificate/Achievement 2}{: 1 line description} \\
+    }}
+ \end{itemize}
+\end{document}

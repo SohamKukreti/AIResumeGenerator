@@ -1,10 +1,3 @@
-%-------------------------
-% Resume in Latex
-% Author : Jake Gutierrez
-% Based off of: https://github.com/sb2nov/resume
-% License : MIT
-%------------------------
-
 \documentclass[letterpaper,11pt]{article}
 
 \usepackage{latexsym}
@@ -21,7 +14,6 @@
 \input{glyphtounicode}
 
 
-%----------FONT OPTIONS----------
 % sans-serif
 % \usepackage[sfdefault]{FiraSans}
 % \usepackage[sfdefault]{roboto}
@@ -60,8 +52,7 @@
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
-%-------------------------
-% Custom commands
+
 \newcommand{\resumeItem}[1]{
   \item\small{
     {#1 \vspace{-2pt}}
@@ -99,8 +90,7 @@
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
-%-------------------------------------------
-%%%%%%  RESUME CONTENT STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 \begin{document}
@@ -110,7 +100,6 @@
 \end{center}
 
 
-%-----------EDUCATION-----------
 \section{Education}
   \resumeSubHeadingListStart
     \resumeSubheading
@@ -119,7 +108,6 @@
   \resumeSubHeadingListEnd
 
 
-%-----------Extracurriculars-----------
 \section{Projects}
   \resumeSubHeadingListStart
 
@@ -136,7 +124,6 @@
   \resumeSubHeadingListEnd
 
 
-%-----------Experience-----------
 \section{Experience}
   \resumeSubHeadingListStart
 
@@ -171,7 +158,6 @@
   
     \resumeSubHeadingListEnd
 
-%-----------Courses-----------
 \section{Classes}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
@@ -182,7 +168,6 @@
     }}
  \end{itemize}
 
-%-----------Skill and Interests-----------
 \section{Skills \& Interests}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{

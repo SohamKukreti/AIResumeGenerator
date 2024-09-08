@@ -28,10 +28,10 @@ def generate_resume():
     for edu in education:
         edu_type = edu.get('type')
         edu_name = edu.get('name')
+        edu_course = edu.get('course')
         graduation_year = edu.get('graduation_year')
         gpa = edu.get('GPA')
-        education_details += f"\n- **{edu_type}**: {edu_name}, Graduation Year: {graduation_year}, GPA: {gpa}\n"
-
+        education_details += f"\n- **{edu_type}**: {edu_name},Course : {edu_course}, Graduation Year: {graduation_year}, GPA: {gpa}\n"
     experience = data.get('experience', [])
     experience_details = ""
     for exp in experience:
@@ -40,7 +40,7 @@ def generate_resume():
         exp_duration = exp.get('duration')
         exp_description = exp.get('description')
         experience_details += f"\n- **{exp_title}** at **{exp_company}** ({exp_duration}): {exp_description}\n"
-    
+        
     projects = data.get('projects', [])
     project_details = ""
     for project in projects:
@@ -62,15 +62,26 @@ def generate_resume():
         cert_link = certificate.get('link')
         certificate_details += f"\n- **{cert_title}**: {cert_link}\n"
 
-    with open('templates/latex_template_3.txt', 'r') as f:
+    with open('templates/latex_template_6.txt', 'r') as f:
         latex_template = f.read()
-        
 
+    project_prompt = ""
+    experience_prompt = ""
+    certificate_prompt = ""   
+
+    if(project_details):
+        project_prompt = f"**Projects**: Detail key projects with their objectives, your role, technologies used, and the outcomes or impact. Use quantifiable metrics to demonstrate success: {project_details}\n\n"
    
+    if(experience_details):
+        experience_prompt = f"**Experience**: Describe past work experience, including job titles, company names, locations, dates of employment, and bullet points detailing responsibilities and achievements. Focus on using action verbs and quantifiable results to showcase impact: {experience_details}\n\n"
+
+    if(certificate_details):
+        certificate_prompt = f"**Certificates**: List any certifications or courses completed that are relevant to the job role. Include the issuing organization and completion date: {certificate_details}\n"
 
     message_content =  f"""Use the following LaTeX template to create a professional, ATS-friendly resume with the given information. 
         Ensure the resume has a high chance of getting selected by recruiters by using industry-relevant keywords and quantifiable metrics where applicable. 
-        Do not invent any details not provided in this prompt. Structure the resume with the following sections: Contact Information, Professional Summary, Skills, Education, Experience, Projects, Achievements, and Certificates.\n\n
+        Do not invent any details not provided in this prompt. Structure the resume with the following sections: Contact Information, Professional Summary, Education, Skills, Experience, Projects, Achievements, and Certificates.\n\n
+        You can skip a section if the input for it has not been provided.\n
         The resume should be created to get the role of a {job_role}\n
         {latex_template}\n\n
         
@@ -81,15 +92,17 @@ def generate_resume():
         - Address: {address}\n
         
         **Professional Summary**: Write a concise summary highlighting key strengths, expertise, and career goals relevant to the job role.\n\n"
-        **Skills**: List key skills (both technical and soft skills) relevant to the job role. Use bullet points and include proficiency levels or years of experience where possible: {skills}\n\n
         **Education**: Provide details on the educational background, including degrees, institutions, graduation dates, and any honors or relevant coursework: {education_details}\n\n
-        **Experience**: Describe past work experience, including job titles, company names, locations, dates of employment, and bullet points detailing responsibilities and achievements. Focus on using action verbs and quantifiable results to showcase impact: {experience_details}\n\n
-        **Projects**: Detail key projects with their objectives, your role, technologies used, and the outcomes or impact. Use quantifiable metrics to demonstrate success: {project_details}\n\n
+        **Skills**: List key skills (both technical and soft skills) relevant to the job role. Use bullet points and include proficiency levels or years of experience where possible: {skills}\n\n
+        {experience_prompt}
+        {project_prompt}
         **Achievements**: Highlight significant professional achievements or recognitions. Include details such as awards, recognitions, publications, or contributions that set you apart: {achievement_details}\n\n
-        **Certificates**: List any certifications or courses completed that are relevant to the job role. Include the issuing organization and completion date: {certificate_details}\n
-    """
+        {certificate_prompt}    
+"""
 
-    system_prompt = "Your task is to generate a professional resume using only the provided information. Format the resume strictly according to the sections mentioned and avoid adding any extra text, commentary, or conversation outside of the resume structure. The output should be a well-structured resume, directly ready for use, without any prefatory or explanatory comments."
+    print(message_content, end = "\n\n\n\n\n\n\n")
+
+    system_prompt = "Your task is to generate a professional resume using only the provided information. Format the resume strictly according to the sections mentioned and do not add any extra text, commentary, or conversation outside of the resume structure. The output should be a well-structured resume, directly ready for use, without any prefatory or explanatory comments."
 
     response = client.chat.completions.create(
         model="gpt-4o",
