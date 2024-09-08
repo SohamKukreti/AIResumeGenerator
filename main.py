@@ -3,13 +3,17 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 import json
+import requests
 
 app = Flask(__name__)
 
 load_dotenv()
 
-openai_api_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=openai_api_key)
+azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+azure_openai_api_key = os.getenv("AZURE_OPENAI_API_KEY")
+azure_openai_deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
+azure_openai_api_version = os.getenv("AZURE_OPENAI_API_VERSION")
+
 
 @app.route('/generate_resume', methods=['POST'])
 def generate_resume():
@@ -104,12 +108,22 @@ def generate_resume():
 
     system_prompt = "Your task is to generate a professional resume using only the provided information. Format the resume strictly according to the sections mentioned and do not add any extra text, commentary, or conversation outside of the resume structure. The output should be a well-structured resume, directly ready for use, without any prefatory or explanatory comments."
 
-    response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": message_content}, {"role": "system", "content": system_prompt}],
+    headers = {
+        "Content-Type": "application/json",
+        "api-key": azure_openai_api_key,
+    }
+
+    response = requests.post(
+        f"{azure_openai_endpoint}openai/deployments/{azure_openai_deployment_name}/chat/completions?api-version={azure_openai_api_version}",
+        headers=headers,
+        json={
+            "messages": [{"role" : "system", "content" : system_prompt}, {"role": "user", "content": message_content,}],
+            "max_tokens": 1000,
+            "temperature": 0.7
+        }
     )
 
-    resume_content = response.choices[0].message.content
+    resume_content = response.json().get("choices")[0].get("message").get("content")
     print(resume_content)
     return jsonify({"resume": resume_content})
 
