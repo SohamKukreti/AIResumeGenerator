@@ -9,7 +9,7 @@
 
 %----------HEADING----------
 \begin{center}
-    \textbf{\Huge \scshape Ananya Verma} \\ \vspace{1pt}
+    \textbf{\Huge \scshape Your Name} \\ \vspace{1pt}
     \small +91 123456789 $|$ email@gmail.com \\
     Address
 \end{center}
@@ -38,7 +38,7 @@ Write professional summary here
     \item \textbf{Other Skills}: mention other skills
 \end{itemize}
 
-%-----------EXPERIENCE-----------
+%-----------EXPERIENCE dont use this section if not provided in input-----------
 \section*{Experience}
 \begin{itemize}
     \item \textbf{Experience 1} \\
@@ -49,7 +49,18 @@ Write professional summary here
           Write description here
 \end{itemize}
 
-%-----------ACHIEVEMENTS-----------
+%-----------PROJECTS dont use this section if not provided in input-----------
+\section*{Projects}
+\begin{itemize}
+    \item \textbf{Project 1} \\
+          \textit{Skills used} \\
+            Write project description here
+    \item \textbf{Project 2} \\
+          \textit{Skills used} \\
+          Write project description here
+\end{itemize}
+
+%-----------ACHIEVEMENTS dont use this section if not provided in input-----------
 \section*{Certificates and Achievements}
 \begin{itemize}
     \item \textbf{Award 1}: Description

@@ -66,7 +66,7 @@ def generate_resume():
         cert_link = certificate.get('link')
         certificate_details += f"\n- **{cert_title}**: {cert_link}\n"
 
-    with open('templates/latex_template_6.txt', 'r') as f:
+    with open('templates/latex_template_5.txt', 'r') as f:
         latex_template = f.read()
 
     project_prompt = ""
@@ -85,7 +85,7 @@ def generate_resume():
     message_content =  f"""Use the following LaTeX template to create a professional, ATS-friendly resume with the given information. 
         Ensure the resume has a high chance of getting selected by recruiters by using industry-relevant keywords and quantifiable metrics where applicable. 
         Do not invent any details not provided in this prompt. Structure the resume with the following sections: Contact Information, Professional Summary, Education, Skills, Experience, Projects, Achievements, and Certificates.\n\n
-        You can skip a section if the input for it has not been provided.\n
+        Skip a section like projects, experience or achievements if the input for it has not been provided.\n
         The resume should be created to get the role of a {job_role}\n
         {latex_template}\n\n
         
@@ -122,8 +122,11 @@ def generate_resume():
             "temperature": 0.7
         }
     )
-
+    print(response.json())
     resume_content = response.json().get("choices")[0].get("message").get("content")
+    with open('files/hello.tex', "w") as file:
+        file.write(resume_content)
+
     print(resume_content)
     return jsonify({"resume": resume_content})
 
