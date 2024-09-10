@@ -8,6 +8,7 @@
 \begin{document}
 
 %----------HEADING----------
+
 \begin{center}
     \textbf{\Huge \scshape Your Name} \\ \vspace{1pt}
     \small +91 123456789 $|$ email@gmail.com \\
@@ -17,8 +18,9 @@
 %----Professional Summary--------
 \section*{Professional Summary}
 Write professional summary here
-
 %-----------EDUCATION-----------
+
+
 \section*{Education}
 \begin{itemize}
     \item \textbf{University Name} \\
@@ -37,6 +39,14 @@ Write professional summary here
     \item \textbf{Technical skills}: mention technical skills
     \item \textbf{Other Skills}: mention other skills
 \end{itemize}
+
+%-----------RELEVANT COURSEWORK dont use this section if not provided in the input-----------
+\section*{Relevant Coursework}
+\begin{itemize}
+    \item \textbf{Course 1}: Description of course 1
+    \item \textbf{Course 2}: Description of course 2
+\end{itemize}
+
 
 %-----------EXPERIENCE dont use this section if not provided in input-----------
 \section*{Experience}
