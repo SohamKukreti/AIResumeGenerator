@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-import json
 import requests
 
 app = Flask(__name__)
@@ -86,22 +85,28 @@ def generate_resume():
         project_coursework_prompt = f"**Coursework**: Give a 1 line summary describing the relevant coursework that showcases your knowledge and skills in the field. Include the course name, topics covered, and any practical applications or projects completed. Mention any notable outcomes, presentations, or research work that demonstrates your expertise and commitment: {coursework_details}\n\n"
     
     if experience_details:
-        experience_prompt = f"**Experience**: Describe past work experience, including job titles, company names, locations, dates of employment, and bullet points detailing responsibilities and achievements. Focus on using action verbs and quantifiable results to showcase impact: {experience_details}\n\n"
+        experience_prompt = f"""**Experience**: Describe past work experience in at least 30 words, including job titles, company names, locations, dates of employment, and bullet points detailing responsibilities and achievements. Focus on using action verbs and quantifiable results to showcase impact: {experience_details}\n\n
+                            Add points like : Gained valuable experience working within a specific industry, applying learned concepts directly into relevant work situations.
+                            , Explored new technologies and approaches to streamline processes.
+                            , Developed organizational skills through managing multiple tasks simultaneously while adhering to strict deadlines.
+                            , Contributed to a positive team environment by collaborating with fellow interns on group projects and presentations.
+                            , Utilized strong communication abilities during presentations which led to increased understanding among colleagues regarding project goals and objectives.
+                            , etc.
+                            """
 
     if certificate_details:
         certificate_prompt = f"**Certificates**: List any certifications or courses completed that are relevant to the job role. Include the issuing organization and completion date: {certificate_details}\n"
     
     if skills:
-        skills_prompt = "**Skills**: List key skills (both technical and soft skills) relevant to the job role. Use bullet points and include proficiency levels or years of experience where possible: {skills} add more skills you feel relevant based on the other information.3\n\n"
+        skills_prompt = f"**Skills**: List key skills (both hard and soft skills) relevant to the job role. Use bullet points and include proficiency levels or years of experience where possible: {skills} add more skills you feel relevant based on the other information.3\n\n"
     else:
-        skills_prompt = "write some soft and technical skills based on the rest of the data provided in the prompt\n\n"
+        skills_prompt = "Write as many soft and hard skills as possible based on the rest of the data provided in the prompt you can mention related skills based on the major taken by the user and experience too.\n\n"
 
-    message_content =  f"""Use the following LaTeX template to create a professional, ATS-friendly resume with the given information. 
-        Ensure the resume has a high chance of getting selected by recruiters by using industry-relevant keywords and quantifiable metrics where applicable. 
-        Do not invent any details not provided in this prompt. Structure the resume with the following sections: Contact Information, Professional Summary, Education, Skills, Experience, Projects/Coursework, Achievements, and Certificates.\n\n
-        Skip a section like projects, experience or achievements if the input for it has not been provided.\n
-        Always use a \ before %\n
-        The resume should be created to get the role of a {job_role}\n
+    message_content =  f"""Use the following LaTeX template to create a professional, ATS-compliant resume using only the information provided. 
+        Ensure the resume is tailored to increase the chances of being selected by recruiters by using industry-relevant keywords and quantifiable metrics where applicable. It needs to get a high ATS score.
+        Do not add any new details or assumptions beyond what is given. Structure the resume with the following sections: Contact Information, Professional Summary, Education, Skills, Experience, Projects/Coursework, Achievements, and Certificates.\n\n
+        Skip any section like projects, experience, or achievements if no corresponding information has been provided.\n
+        The resume should be designed for the role of a {job_role}.\n
         {latex_template}\n\n
         
         **Contact Information**:\n
@@ -110,18 +115,18 @@ def generate_resume():
         - Phone: {phone}\n
         - Address: {address}\n
         
-        **Professional Summary**: Write a concise summary highlighting key strengths, expertise, and career goals relevant to the job role.\n\n"
+        **Professional Summary**: Write a concise summary highlighting key strengths, relevant expertise, and career goals in alignment with the job role.\n\n"
         **Education**: Provide details on the educational background, including degrees, institutions, graduation dates, and any honors or relevant coursework: {education_details}\n\n
         {skills_prompt}
         {experience_prompt}
         {project_coursework_prompt}
-        **Achievements**: Highlight significant professional achievements or recognitions. Include details such as awards, recognitions, publications, or contributions that set you apart, put certificates in this section only: {achievement_details}\n\n
+        **Achievements**: List any significant professional achievements, such as awards, recognitions, publications, or contributions. If applicable, certificates should also be included here: {achievement_details}\n\n
         {certificate_prompt}    
         """
 
     print(message_content, end = "\n\n\n\n\n\n\n")
 
-    system_prompt = "Your task is to generate a professional resume using only the provided information. Format the resume strictly according to the sections mentioned and do not add any extra text, commentary, or conversation outside of the resume structure. The output should be a well-structured resume, directly ready for use, without any prefatory or explanatory comments."
+    system_prompt = "Your task is to generate a professional ATS compliant resume using only the provided information. Format the resume strictly according to the sections mentioned and do not add any extra text, commentary, or conversation outside of the resume structure. The output should be a well-structured resume, directly ready for use, without any prefatory or explanatory comments."
 
     headers = {
         "Content-Type": "application/json",
@@ -134,7 +139,7 @@ def generate_resume():
         json={
             "messages": [{"role" : "system", "content" : system_prompt}, {"role": "user", "content": message_content,}],
             "max_tokens": 1000,
-            "temperature": 0.7
+            "temperature": 0.6
         }
     )
     print(response.json())

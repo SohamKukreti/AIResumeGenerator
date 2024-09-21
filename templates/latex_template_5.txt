@@ -3,7 +3,13 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{graphicx}
-\usepackage[left=0.75in, right=0.75in, top=0.75in, bottom=0.75in]{geometry}
+\usepackage[left=0.75in, right=0.75in, top=0.3in, bottom=0.5in]{geometry}
+\usepackage{titlesec} % Package to control section spacing
+\input{glyphtounicode}
+\pdfgentounicode=1 
+
+% Adjust section spacing: {before}{after}{title separation}
+\titlespacing\section{0pt}{5pt plus 1pt minus 1pt}{3pt plus 1pt minus 1pt}
 
 \begin{document}
 
@@ -20,7 +26,6 @@
 Write professional summary here
 %-----------EDUCATION-----------
 
-
 \section*{Education}
 \begin{itemize}
     \item \textbf{University Name} \\
@@ -36,7 +41,7 @@ Write professional summary here
 %-----------SKILLS-----------
 \section*{Skills}
 \begin{itemize}
-    \item \textbf{Technical skills}: mention technical skills
+    \item \textbf{Hard skills}: mention hard skills
     \item \textbf{Other Skills}: mention other skills
 \end{itemize}
 
@@ -47,16 +52,15 @@ Write professional summary here
     \item \textbf{Course 2}: Description of course 2
 \end{itemize}
 
-
 %-----------EXPERIENCE dont use this section if not provided in input-----------
 \section*{Experience}
 \begin{itemize}
     \item \textbf{Experience 1} \\
           \textit{Start - End date} \\
-            Write description here
+            Write detailed description here
     \item \textbf{Experience 2} \\
           \textit{Start - End date} \\
-          Write description here
+          Write detailed description here
 \end{itemize}
 
 %-----------PROJECTS dont use this section if not provided in input-----------
@@ -64,17 +68,22 @@ Write professional summary here
 \begin{itemize}
     \item \textbf{Project 1} \\
           \textit{Skills used} \\
-            Write project description here
+            Write detailed project description here
     \item \textbf{Project 2} \\
           \textit{Skills used} \\
-          Write project description here
+          Write detailed project description here
 \end{itemize}
 
 %-----------ACHIEVEMENTS dont use this section if not provided in input-----------
-\section*{Certificates and Achievements}
+\section*{Achievements}
 \begin{itemize}
     \item \textbf{Award 1}: Description
     \item \textbf{Award 2}: Description
+\end{itemize}
+
+%-----------CERTIFICATES dont use this section if not provided in input-----------
+\section*{Certificates}
+\begin{itemize}
     \item \textbf{Certificate 1}: Description
     \item \textbf{Certificate 2}: Description
 \end{itemize}

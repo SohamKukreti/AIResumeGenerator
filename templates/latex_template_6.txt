@@ -30,7 +30,7 @@ Write professional summary here
 \section{Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Technical skills}{: mention technical skills} \\
+     \textbf{Hard skills}{: mention hard skills} \\
      \textbf{Other Skills}{: mention other skills} \\
     }}
  \end{itemize}
