@@ -1,0 +1,78 @@
+{
+    "name": "Soham Kukreti",
+    "email": "kukretisoham@gmail.com",
+    "phone": "9315624035",
+    "address": "Kailash Dham sector 50 noida",
+    "role": "Software enginner",
+    "Education": [
+        {
+            "type": "University",
+            "name": "JIIT noida",
+            "graduation_year": "2026",
+            "course": "Bachelor of Computer science engineering",
+            "GPA": "9.3"
+        },
+        {
+            "type": "High School",
+            "name": "DPS noida",
+            "graduation_year": "2022",
+            "course": "Science",
+            "GPA": "9.8"
+        }
+    ],
+    "experience": [
+        {
+            "title": "Open Source contributor",
+            "company": "Sugar Labs",
+            "duration": "Feb-April 2024",
+            "description": "contributor to sugar labs, fixed bugs added features communicated n shi, contributed to dbt llm tools and open source project to help users answer dbt related queries. partner in a rag based chatbot to respond to dbt databases related queries helping in project direction and all that"
+        },
+        {
+            "title": "technical coordinator",
+            "company": "osdc",
+            "duration": "July 2024-present",
+            "description": "Organized hackathons, events and talks as technical cooridnator"
+        },
+        {
+            "title": "Management and public speaking",
+            "company": "Multiple organizations",
+            "duration": "January 2023-Present",
+            "description": "Organized literary fest, participated in debates, volunteered to organized pydelhi which had 600+ participants, and stuff."
+        }
+    ],
+    "projects": [
+        {
+            "title": "Omilia",
+            "description": "Educational platformer game, learn languages python pygame for autistic children and stuff idk"
+        },
+        {
+            "title": "finwiser",
+            "description": "financial management tool which does a lot of things like give latest financial news, help track expenses, calculate loans, sips and a lot of other stuff used python, numpy, matplotlib, streamlit and a bunch of other stuff"
+        },
+        {
+            "title" : "SignSense",
+            "description" : "Implemented a sign language detector in python using opencv, numpy, mediapipe and tensorflow."
+        }
+    ],
+    "Achievements": [
+        {
+            "title": "OSDHack winner",
+            "description": "First place in hackathon out of 1000+ people"
+        },
+        {
+            "title": "codejam winner",
+            "description": "first place out of 200+ people in hackathon"
+        },
+        {
+            "title" : "IIT'D JAM",
+            "description" : "Semi finalist at just a minute competition at iit delhi"
+        }
+    ],
+    "certificates": [
+        {
+            "title": "",
+            "link": ""
+        }
+    ],
+    "skills": "Python, C, C++, SQL, HTML, CSS, Javascript, GIT, Data Visualization, Django, Machine Learning, Game Development, Web Development, Linux Public Speaking, Communication, Video Editing, Social Media Marketing, Music Production, Audio Editing"
+}

@@ -1,19 +1,22 @@
-from flask import Flask, request, jsonify
-from openai import OpenAI
-import os
-from dotenv import load_dotenv
-import requests
 from pydantic import BaseModel
-
+from openai import OpenAI
+from dotenv import load_dotenv
+from typing import Optional
+import os
+from flask import Flask, request
+load_dotenv()
 
 app = Flask(__name__)
 
-load_dotenv()
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
-azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-azure_openai_api_key = os.getenv("AZURE_OPENAI_API_KEY")
-azure_openai_deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
-azure_openai_api_version = os.getenv("AZURE_OPENAI_API_VERSION")
+client = OpenAI(api_key=OPENAI_API_KEY)
+
+class PersonalInfo(BaseModel):
+    name : str
+    email : str
+    phone : str
+    address : str
 
 class Education(BaseModel):
     type : str
@@ -40,15 +43,19 @@ class Achievement(BaseModel):
     title : str
     description : str
 
-class ResumeResponse(BaseModel):
-    personal_information : list[str]
-    education : list[Education]
-    experience : list[Experience]
-    projects : list[Project]
-    achievements : list[Achievement]
-    skills : str
-    certificates : list[Certificate]
+class Coursework(BaseModel):
+    title : str
+    description : str
 
+class ResumeResponse(BaseModel):
+    personal_information : PersonalInfo
+    education : list[Education]
+    coursework: Optional[list[Coursework]]
+    experience : Optional[list[Experience]]
+    projects : list[Project]
+    achievements : Optional[list[Achievement]]
+    skills : str
+    certificates : Optional[list[Certificate]]
 
 @app.route('/generate_resume', methods=['POST'])
 def generate_resume():
@@ -107,8 +114,8 @@ def generate_resume():
         cert_link = certificate.get('link')
         certificate_details += f"\n- **{cert_title}**: {cert_link}\n"
 
-    with open('templates/latex_template_5.txt', 'r') as f:
-        latex_template = f.read()
+    #with open('templates/latex_template_5.txt', 'r') as f:
+    #    latex_template = f.read()
 
     project_coursework_prompt = ""
     experience_prompt = ""
@@ -161,30 +168,20 @@ def generate_resume():
 
     print(message_content, end = "\n\n\n\n\n\n\n")
 
-    system_prompt = "Your task is to generate a professional ATS compliant resume using only the provided information. Format the resume strictly according to the sections mentioned and do not add any extra text, commentary, or conversation outside of the resume structure. The output should be a well-structured resume, directly ready for use, without any prefatory or explanatory comments."
 
-    headers = {
-        "Content-Type": "application/json",
-        "api-key": azure_openai_api_key,
-    }
-
-    response = requests.post(
-        f"{azure_openai_endpoint}openai/deployments/{azure_openai_deployment_name}/chat/completions?api-version={azure_openai_api_version}",
-        headers=headers,
-        json={
-            "messages": [{"role" : "system", "content" : system_prompt}, {"role": "user", "content": message_content,}],
-            "max_tokens": 1000,
-            "temperature": 0.6,
-            "response_format" : f"{ResumeResponse}"
-        }
+    completion = client.beta.chat.completions.parse(
+        model="gpt-4o-2024-08-06",
+        messages=[
+            {"role": "system", "content": "Your task is to generate a professional ATS compliant resume using only the provided information. The Resume should have a high ATS score."},
+            {"role": "user", "content": message_content}
+        ],
+        response_format=ResumeResponse,
     )
-    print(response.json())
-    #resume_content = response.json().get("choices")[0].get("message").get("content")
-    #with open('files/hello.tex', "w") as file:
-    #    file.write(resume_content)
 
-    #print(resume_content)
-    return jsonify({"resume": "hello"})
+    #research_paper = completion.choices[0].message.parsed
+    output = completion.choices[0].message.content
+    
+    return output
 
 if __name__ == '__main__':
     app.run(debug=True)
