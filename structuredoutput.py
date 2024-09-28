@@ -114,8 +114,12 @@ def generate_resume():
         cert_link = certificate.get('link')
         certificate_details += f"\n- **{cert_title}**: {cert_link}\n"
 
-    #with open('templates/latex_template_5.txt', 'r') as f:
-    #    latex_template = f.read()
+    questions = data.get('questions', [])
+    qna_details = ""    
+    for q in questions:
+        question = q.get('question')
+        answer = q.get('answer')
+        qna_details += f"\n- **{question}**: {answer}\n"
 
     project_coursework_prompt = ""
     experience_prompt = ""
@@ -148,6 +152,8 @@ def generate_resume():
     message_content =  f"""Create a professional, ATS-compliant resume using only the information provided. 
         Ensure the resume is tailored to increase the chances of being selected by recruiters by using industry-relevant keywords and quantifiable metrics where applicable. It needs to get a high ATS score.
         Do not add any new details or assumptions beyond what is given. Structure the resume with the following sections: Contact Information, Professional Summary, Education, Skills, Experience, Projects/Coursework, Achievements, and Certificates.\n\n
+        The user has also answered specific questions that provide additional context about their experience, accomplishments, and skills. Please use this information to build a stronger and more personalized resume:\n
+        {qna_details}\n\n
         Skip any section like projects, experience, or achievements if no corresponding information has been provided.\n
         The resume should be designed for the role of a {job_role}.\n
 
@@ -170,7 +176,7 @@ def generate_resume():
 
 
     completion = client.beta.chat.completions.parse(
-        model="gpt-4o-2024-08-06",
+        model="gpt-4o-mini-2024-07-18",
         messages=[
             {"role": "system", "content": "Your task is to generate a professional ATS compliant resume using only the provided information. The Resume should have a high ATS score."},
             {"role": "user", "content": message_content}
@@ -179,8 +185,10 @@ def generate_resume():
     )
 
     #research_paper = completion.choices[0].message.parsed
+    print(completion)
     output = completion.choices[0].message.content
-    
+    with open("demo.json", "w") as f:
+        f.write(output)
     return output
 
 if __name__ == '__main__':

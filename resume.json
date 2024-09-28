@@ -74,5 +74,22 @@
             "link": ""
         }
     ],
-    "skills": "Python, C, C++, SQL, HTML, CSS, Javascript, GIT, Data Visualization, Django, Machine Learning, Game Development, Web Development, Linux Public Speaking, Communication, Video Editing, Social Media Marketing, Music Production, Audio Editing"
+    "skills": "Python, C, C++, SQL, HTML, CSS, Javascript, GIT, Data Visualization, Django, Machine Learning, Game Development, Web Development, Linux Public Speaking, Communication, Video Editing, Social Media Marketing, Music Production, Audio Editing",
+    "questions" : [
+        {
+            "question" : "Can you share an example of a challenging project or problem you worked on? How did you approach it, and what was the outcome?",
+            "answer" : "while participating in hackathons i had to deal with a very short time span and had to create a product within 48 hours, but through efficient team management i managed to finish my project and win the hackathon"
+        },
+        {
+            "question" : "In what ways have you contributed to group activities, clubs, or communities at work, school, or elsewhere?",
+            "answer" : "I am the technical coordinator of OSDC so i manage my team, we recently conducted an event where 80+ people contributed to our open source project and learned somethign new, that made me feel very happy that i can lead a team like that"
+        },
+        {
+            "question" : "Have you had the opportunity to give presentations, speak at events, or teach others? What topics did you cover, and how did they go?",
+            "answer" : "I have given a lightning talk in pydelhi conference where there were 600+ attendees, i have also given other talks teachning people about open source programs and how to contribute to open source"
+        },
+        {
+            "question" : "What kind of feedback, awards, or recognition have you received from colleagues, supervisors, or teachers? What was it for?"
+        }
+    ]
 }
