@@ -185,7 +185,8 @@ def generate_resume():
     )
 
     #research_paper = completion.choices[0].message.parsed
-    print(completion)
+    cost = (completion.usage.completion_tokens * 0.0000006 + completion.usage.prompt_tokens * 0.00000015)
+    print("Cost to run this model is : " + str(cost))
     output = completion.choices[0].message.content
     with open("demo.json", "w") as f:
         f.write(output)
